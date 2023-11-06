@@ -9,7 +9,7 @@ public class HomeController {
 
     @FXML
     void onAddButtonPress(ActionEvent event) throws IOException {
-        SceneSwitch.switchToScene(event,"Dashboard");
+        SceneSwitch.switchToScene(event,"Add");
     }
 
     @FXML
