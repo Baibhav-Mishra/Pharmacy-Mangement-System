@@ -20,7 +20,7 @@ public class LoginController {
         System.out.println(userNameField.getText());
 
         if(CredentialValidator.validate(userNameField.getText(), passwordField.getText()))
-            SceneSwitch.switchToScene(event, "Dashboard");
+            SceneSwitch.switchToScene(event, "Home");
 
     }
     @FXML

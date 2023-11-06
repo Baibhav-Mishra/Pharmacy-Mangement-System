@@ -61,7 +61,6 @@ public class DashBoardController implements Initializable {
         TypeColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("type"));
         ManufactureColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("manufacturer"));
         SerialNoColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, Integer>("serialno"));
-
         table1.setItems(list);
 
 
