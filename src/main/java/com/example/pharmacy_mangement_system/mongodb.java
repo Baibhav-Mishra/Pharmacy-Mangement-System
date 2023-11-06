@@ -1,24 +1,30 @@
 package com.example.pharmacy_mangement_system;
 
-import com.mongodb.ConnectionString;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.MongoException;
+import static com.mongodb.client.model.Filters.eq;
+
+import org.bson.Document;
+
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
 
 public class mongodb {
-    public static void main(String[] args) {
-        String connectionString = "mongodb+srv://admin:admin@cluster0.qkqmwrq.mongodb.net/?retryWrites=true&w=majority";
-        MongoClient client =  MongoClients.create(connectionString);
-        MongoDatabase db = client.getDatabase("sample1");
+    public static void main( String[] args ) {
 
-        MongoCollection col = db.getCollection("data");
-//
-        Document sampleDoc = new Document("_id", "1").append("name", "John Smith");
-//
-        col.insertOne(sampleDoc);
+        // Replace the placeholder with your MongoDB deployment's connection string
+        String uri = "mongodb+srv://admin:admin@cluster0.ez7ctd3.mongodb.net/?retryWrites=true&w=majority";
+
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("sample_mflix");
+            MongoCollection<Document> collection = database.getCollection("movies");
+
+            Document doc = collection.find(eq("title", "Back to the Future")).first();
+            if (doc != null) {
+                System.out.println(doc.toJson());
+            } else {
+                System.out.println("No matching documents found.");
+            }
+        }
     }
 }
