@@ -21,6 +21,9 @@ public class HomeController {
     void onAlertButtonPress(ActionEvent event) throws IOException {
         SceneSwitch.switchToScene(event, "Alert");
     }
-//    public void onButton1Click(ActionEvent actionEvent) {
-//    }
+
+    @FXML
+    void onBackButtonPress(ActionEvent event) throws IOException {
+        SceneSwitch.switchToScene(event, "Login");
+    }
 }
