@@ -17,6 +17,10 @@ public class HomeController {
         SceneSwitch.switchToScene(event, "Dashboard");
     }
 
+    @FXML
+    void onAlertButtonPress(ActionEvent event) throws IOException {
+        SceneSwitch.switchToScene(event, "Alert");
+    }
 //    public void onButton1Click(ActionEvent actionEvent) {
 //    }
 }
