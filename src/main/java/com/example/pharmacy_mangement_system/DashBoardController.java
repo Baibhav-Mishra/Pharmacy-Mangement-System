@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -40,6 +41,11 @@ public class DashBoardController implements Initializable {
 
     @FXML
     private TableView<Medicine> table1;
+
+    @FXML
+    void onBackButtonPress(ActionEvent event) throws IOException {
+        SceneSwitch.switchToScene(event, "Home");
+    }
 
     @FXML
     void onEnterSearchField(ActionEvent event) {
