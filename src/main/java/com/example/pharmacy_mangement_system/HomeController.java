@@ -13,8 +13,8 @@ public class HomeController {
     }
 
     @FXML
-    void onViewButtonClick(ActionEvent event) {
-
+    void onViewButtonClick(ActionEvent event) throws IOException {
+        SceneSwitch.switchToScene(event, "Dashboard");
     }
 
 //    public void onButton1Click(ActionEvent actionEvent) {

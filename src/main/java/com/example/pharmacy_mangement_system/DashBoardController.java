@@ -54,7 +54,11 @@ public class DashBoardController implements Initializable {
 
     ObservableList<Medicine> list = FXCollections.observableArrayList(
 
+
+            new Medicine(1021,"Baibhav", 5, 20, "Mishra", "Tablet", "20/10/2004"),
             new Medicine(1021,"Baibhav", 5, 20, "Mishra", "Tablet", "20/10/2004")
+
+
     );
 
 
