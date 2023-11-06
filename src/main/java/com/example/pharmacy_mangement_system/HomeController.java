@@ -3,11 +3,13 @@ import javafx.fxml.FXML;
 
 import javafx.event.ActionEvent;
 
+import java.io.IOException;
+
 public class HomeController {
 
     @FXML
-    void onAddButtonPress(ActionEvent event) {
-        System.out.println("dsf");
+    void onAddButtonPress(ActionEvent event) throws IOException {
+        SceneSwitch.switchToScene(event,"Dashboard");
     }
 
     @FXML
