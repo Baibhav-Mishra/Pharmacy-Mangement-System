@@ -44,7 +44,7 @@ public class mongodb {
         }
         return list;
     }
-    void addtoCollection(int id, String type, String name, int price, String expiry, String manufacturer, int currentStock) {
+    public static void addtoCollection(int id, String type, String name, double price, String expiry, String manufacturer, int currentStock) {
         String uri = "mongodb+srv://admin:admin@cluster0.ez7ctd3.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PharmacyDB");
