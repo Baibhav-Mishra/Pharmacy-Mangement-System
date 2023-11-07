@@ -1,5 +1,7 @@
 package com.example.pharmacy_mangement_system;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,6 +41,16 @@ public class AlertController implements Initializable {
         SceneSwitch.switchToScene(event, "Home");
     }
 
+    ObservableList<Medicine> lowStockDisplay() {
+        ObservableList<Medicine> list = FXCollections.observableArrayList();
+        for (Medicine med: mongodb.fetchData()) {
+            if (med.getCurrentStock() < 10) {
+                list.add(med);
+            }
+        }
+        return list;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         alertID.setCellValueFactory(new PropertyValueFactory<Medicine, Integer>("_id"));
@@ -47,6 +59,6 @@ public class AlertController implements Initializable {
         alertName.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
         alertManufacturer.setCellValueFactory(new PropertyValueFactory<Medicine, String>("manufacturer"));
         alertStock.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("currentStock"));
-        lowStockTable.setItems(mongodb.fetchData());
+        lowStockTable.setItems(lowStockDisplay());
     }
 }
