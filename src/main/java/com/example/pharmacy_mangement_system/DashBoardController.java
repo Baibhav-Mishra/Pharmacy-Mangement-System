@@ -57,6 +57,9 @@ public class DashBoardController implements Initializable {
     private TableColumn<Medicine, Double> AmountColumn2;
 
     @FXML
+    private TableColumn<Medicine, Double> QuantityColumn;
+
+    @FXML
     private TableColumn<Medicine, Double> QuantityColumn2;
 
     @FXML
@@ -93,8 +96,8 @@ public class DashBoardController implements Initializable {
         PriceColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("price"));
         TypeColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("type"));
         ManufactureColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("manufacturer"));
+        QuantityColumn.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("currentStock"));
         table1.setItems(mongodb.fetchData());
-
     }
 
 }
