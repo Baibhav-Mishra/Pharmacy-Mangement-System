@@ -7,6 +7,9 @@ module com.example.pharmacy_mangement_system {
     requires java.sql;
     requires mysql.connector.java;
     requires com.fasterxml.jackson.databind;
+    requires itextpdf;
+    requires layout;
+    requires kernel;
     opens com.example.pharmacy_mangement_system to javafx.fxml;
     exports com.example.pharmacy_mangement_system;
 }
