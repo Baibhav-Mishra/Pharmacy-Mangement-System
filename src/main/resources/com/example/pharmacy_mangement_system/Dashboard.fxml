@@ -34,16 +34,14 @@
       <Button layoutX="119.0" layoutY="432.0" mnemonicParsing="false" onAction="#onAddBillButtonClick" text="Add to Bill" />
       <Button layoutX="496.0" layoutY="424.0" mnemonicParsing="false" text="Generate Bill" />
       <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBackButtonPress" text="&lt;- Back" />
-      <ScrollPane layoutX="374.0" layoutY="78.0" prefHeight="307.0" prefWidth="334.0">
+      <ScrollPane layoutX="374.0" layoutY="78.0" prefHeight="307.0">
          <content>
-            <TableView fx:id="billing_table" prefHeight="306.0" prefWidth="577.0">
+            <TableView fx:id="billing_table">
               <columns>
-                <TableColumn fx:id="SerialNoColumn2" prefWidth="75.0" text="Sr. No." />
                   <TableColumn fx:id="IDColumn2" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="NameColumn2" prefWidth="75.0" text="Name" />
                   <TableColumn fx:id="QuantityColumn2" prefWidth="75.0" text="Quantity" />
                   <TableColumn fx:id="PriceColumn2" prefWidth="75.0" text="Price" />
-                  <TableColumn fx:id="AmountColumn2" prefWidth="75.0" text="Amount" />
               </columns>
             </TableView>
          </content>

@@ -1,7 +1,7 @@
 package com.example.pharmacy_mangement_system;
 
 
-public class Medicine {
+public class Medicine implements Cloneable{
     String name = "";
     double cost;
     int currentStock, _id;
@@ -73,5 +73,9 @@ public class Medicine {
 
     public void setExpiry(String expiry) {
         this.expiry = expiry;
+    }
+    public Medicine copy()
+    {
+        return new Medicine(this._id, this.name, this.cost, this.currentStock, this.manufacturer, this.type, this.expiry);
     }
 }

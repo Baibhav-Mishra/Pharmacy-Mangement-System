@@ -1,7 +1,5 @@
 package com.example.pharmacy_mangement_system;
 
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -72,7 +70,7 @@ public class DashBoardController implements Initializable {
     private TableView<Medicine> billing_table;
 
     @FXML
-    Medicine Value;
+    Medicine ValueTable2, ValueTable1;
     @FXML
     void onBackButtonPress(ActionEvent event) throws IOException {
         SceneSwitch.switchToScene(event, "Home");
@@ -87,10 +85,12 @@ public class DashBoardController implements Initializable {
     }
     @FXML
     void onAddBillButtonClick(ActionEvent event) {
-        Value.setCurrentStock(Integer.parseInt(QuantityLabel.getText()));
-        Value.setPrice(Value.getPrice()*Value.getCurrentStock());
-        list2.add(Value);
+        ValueTable2.setCurrentStock(Integer.parseInt(QuantityLabel.getText()));
+        ValueTable2.setPrice(ValueTable1.getPrice() * ValueTable2.getCurrentStock());
+        ValueTable1.setCurrentStock(ValueTable1.currentStock-Integer.parseInt(QuantityLabel.getText()));
+        list2.add(ValueTable2);
         billing_table.setItems(list2);
+        table1.refresh();
     }
 
     ObservableList<Medicine> list2 = FXCollections.observableArrayList(
@@ -116,7 +116,8 @@ public class DashBoardController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         table1.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             if (newValue != null) {
-                Value = newValue;
+                ValueTable2 = newValue.copy();
+                ValueTable1 = newValue;
 
             }
         });
