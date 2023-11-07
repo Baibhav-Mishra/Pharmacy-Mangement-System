@@ -40,7 +40,7 @@
       <Button layoutX="20.0" layoutY="16.0" mnemonicParsing="false" onAction="#onBackButtonPress" text="&lt;- Back" />
       <ScrollPane layoutX="316.0" layoutY="101.0" prefHeight="262.0" prefWidth="270.0">
          <content>
-            <TableView fx:id="lowStockTable1" prefHeight="278.0">
+            <TableView fx:id="nearExpiryTable" prefHeight="278.0">
                <columns>
                   <TableColumn fx:id="alertID1" prefWidth="52.80004960298538" text="ID" />
                   <TableColumn fx:id="alertName1" prefWidth="103.99999618530273" text="Name" />

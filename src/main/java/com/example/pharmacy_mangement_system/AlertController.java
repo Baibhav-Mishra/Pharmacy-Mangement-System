@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 
 public class AlertController implements Initializable {
 
+// Low stock Table
     @FXML
     private TableColumn<Medicine, String> alertExpiry;
 
@@ -36,17 +37,57 @@ public class AlertController implements Initializable {
     @FXML
     private TableView<Medicine> lowStockTable;
 
+// Near expiry Table
+    @FXML
+    private TableColumn<Medicine, String> alertExpiry1;
+
+    @FXML
+    private TableColumn<Medicine, Integer> alertID1;
+
+    @FXML
+    private TableColumn<Medicine, String> alertManufacturer1;
+
+    @FXML
+    private TableColumn<Medicine, String> alertName1;
+
+    @FXML
+    private TableColumn<Medicine, Double> alertStock1;
+
+    @FXML
+    private TableColumn<Medicine, String> alertType1;
+
+    @FXML
+    private TableView<?> nearExpiryTable;
+
     @FXML
     void onBackButtonPress(ActionEvent event) throws IOException {
         SceneSwitch.switchToScene(event, "Home");
     }
 
-    ObservableList<Medicine> lowStockDisplay() {
+    ObservableList<Medicine> lowStockObservableList() {
         ObservableList<Medicine> list = FXCollections.observableArrayList();
         for (Medicine med: mongodb.fetchData()) {
             if (med.getCurrentStock() < 10) {
                 list.add(med);
             }
+        }
+        return list;
+    }
+
+//    void loadCellValueFactory(TableView<Medicine> table) {
+//       for (TableColumn<Medicine, ?> x: table.getColumns()) {
+//           // TODO
+//           System.out.println(x.getId());
+//       }
+//    }
+
+    ObservableList<Medicine> nearExpiryObservableList() {
+        ObservableList<Medicine> list = FXCollections.observableArrayList();
+        for (Medicine med: mongodb.fetchData()) {
+//            if (med.getExpiry()) {
+                list.add(med);
+                System.out.println(med.getExpiry());
+//            }
         }
         return list;
     }
@@ -59,6 +100,17 @@ public class AlertController implements Initializable {
         alertName.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
         alertManufacturer.setCellValueFactory(new PropertyValueFactory<Medicine, String>("manufacturer"));
         alertStock.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("currentStock"));
-        lowStockTable.setItems(lowStockDisplay());
+//        loadCellValueFactory(lowStockTable);
+        lowStockTable.setItems(lowStockObservableList());
+
+        alertID1.setCellValueFactory(new PropertyValueFactory<Medicine, Integer>("_id"));
+        alertType1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("type"));
+        alertExpiry1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("expiry"));
+        alertName1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
+        alertManufacturer1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("manufacturer"));
+        alertStock1.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("currentStock"));
+        nearExpiryObservableList();
+//        loadCellValueFactory(lowStockTable);
+//        nearExpiryTable.setItems(nearExpiryObservableList());
     }
 }
