@@ -42,6 +42,30 @@ public class DashBoardController implements Initializable {
     @FXML
     private TableView<Medicine> table1;
 
+
+
+    @FXML
+    private TableColumn<Medicine, Integer> IDColumn2;
+
+    @FXML
+    private TableColumn<Medicine, String> NameColumn2;
+
+    @FXML
+    private TableColumn<Medicine, Double> PriceColumn2;
+
+    @FXML
+    private TableColumn<Medicine, Double> AmountColumn2;
+
+    @FXML
+    private TableColumn<Medicine, Double> QuantityColumn2;
+
+    @FXML
+    private TableColumn<Medicine, Integer> SerialNoColumn2;
+
+    @FXML
+    private TableView<Medicine> billing_table;
+
+
     @FXML
     void onBackButtonPress(ActionEvent event) throws IOException {
         SceneSwitch.switchToScene(event, "Home");
