@@ -15,37 +15,43 @@
             <Font size="22.0" />
          </font>
       </Text>
-      <Text layoutX="46.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Low Stock Medicines" wrappingWidth="128.53680419921875" />
-      <Text layoutX="371.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Near Expiry date Medicines" wrappingWidth="144.53680419921875" />
-      <ScrollPane layoutX="34.0" layoutY="100.0" prefHeight="262.0" prefWidth="246.0">
+      <Text layoutX="48.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Low Stock Medicines" wrappingWidth="226.13677978515625">
+         <font>
+            <Font size="17.0" />
+         </font></Text>
+      <Text layoutX="333.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Near Expiry date Medicines" wrappingWidth="236.5367431640625">
+         <font>
+            <Font size="17.0" />
+         </font></Text>
+      <ScrollPane layoutX="34.0" layoutY="100.0" prefHeight="262.0" prefWidth="270.0">
          <content>
-            <TableView fx:id="lowStockTable" prefHeight="278.0" prefWidth="275.0">
+            <TableView fx:id="lowStockTable" prefHeight="278.0">
                <columns>
-                  <TableColumn fx:id="alertID" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="alertName" prefWidth="130.40003967285156" text="Name" />
-                  <TableColumn fx:id="alertStock" prefWidth="54.39996337890625" text="Stock" />
-                  <TableColumn fx:id="alertType" prefWidth="83.99993896484375" text="Type" />
-                  <TableColumn fx:id="alertExpiry" prefWidth="75.0" text="Expiry Date" />
+                  <TableColumn fx:id="alertID" prefWidth="55.19998246431351" text="ID" />
+                  <TableColumn fx:id="alertName" prefWidth="92.79998397827148" text="Name" />
+                  <TableColumn fx:id="alertStock" prefWidth="88.0" text="Stock" />
+                  <TableColumn fx:id="alertType" prefWidth="82.40003967285156" text="Type" />
+                  <TableColumn fx:id="alertExpiry" prefWidth="104.0" text="Expiry Date" />
                   <TableColumn fx:id="alertManufacturer" prefWidth="75.0" text="Manufacturer" />
                </columns>
             </TableView>
          </content>
       </ScrollPane>
-      <ScrollPane layoutX="320.0" layoutY="100.0" prefHeight="262.0" prefWidth="246.0">
+      <Button layoutX="20.0" layoutY="16.0" mnemonicParsing="false" onAction="#onBackButtonPress" text="&lt;- Back" />
+      <ScrollPane layoutX="316.0" layoutY="101.0" prefHeight="262.0" prefWidth="270.0">
          <content>
-            <TableView prefHeight="278.0" prefWidth="275.0">
+            <TableView fx:id="lowStockTable1" prefHeight="278.0">
                <columns>
-                  <TableColumn prefWidth="63.200008392333984" text="ID" />
-                  <TableColumn prefWidth="75.0" text="Expiry Date" />
-                  <TableColumn prefWidth="83.99993896484375" text="Type" />
-                  <TableColumn prefWidth="130.40003967285156" text="Name" />
-                  <TableColumn prefWidth="54.39996337890625" text="Stock" />
-                  <TableColumn prefWidth="75.0" text="Manufacturer" />
+                  <TableColumn fx:id="alertID1" prefWidth="52.80004960298538" text="ID" />
+                  <TableColumn fx:id="alertName1" prefWidth="103.99999618530273" text="Name" />
+                  <TableColumn fx:id="alertExpiry1" prefWidth="77.5999755859375" text="Expiry Date" />
+                  <TableColumn fx:id="alertType1" prefWidth="111.20002746582031" text="Type" />
+                  <TableColumn fx:id="alertStock1" prefWidth="77.5999755859375" text="Stock" />
+                  <TableColumn fx:id="alertManufacturer1" prefWidth="77.5999755859375" text="Manufacturer" />
                </columns>
             </TableView>
          </content>
       </ScrollPane>
-      <Button layoutX="20.0" layoutY="16.0" mnemonicParsing="false" onAction="#onBackButtonPress" text="&lt;- Back" />
       
    </children>
 </AnchorPane>
