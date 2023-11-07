@@ -33,7 +33,7 @@ public class AddController implements Initializable {
     private TextField addQuantity;
 
     @FXML
-    private ComboBox<?> addType;
+    private ComboBox<String> addType = new ComboBox<>();
 
     @FXML
     void onBackButtonPress(ActionEvent event) throws IOException {
@@ -47,7 +47,7 @@ public class AddController implements Initializable {
         String manufacturer = addManufacturer.getText();
         String price = addPrice.getText();
         String expiry = addExpiry.getValue().toString();
-        String type = addType.getValue().toString();
+        String type = addType.getValue();
         String quantity = addQuantity.getText();
 
         if (id.isEmpty() || name.isEmpty() || manufacturer.isEmpty() || price.isEmpty() || expiry.isEmpty() || type.isEmpty() || quantity.isEmpty()) {
@@ -63,5 +63,8 @@ public class AddController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        addType.getItems().removeAll(addType.getItems());
+        addType.getItems().addAll("Option A", "Option B", "Option C");
+        addType.getSelectionModel().select("Option B");
     }
 }
