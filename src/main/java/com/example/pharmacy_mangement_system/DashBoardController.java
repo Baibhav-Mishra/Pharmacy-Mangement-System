@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -100,6 +101,9 @@ public class    DashBoardController implements Initializable {
         System.out.println(list2.size());
         billing_table.refresh();
     }
+    public void onGenerateButtonClick(ActionEvent actionEvent) throws FileNotFoundException {
+        GenerateBill.generateBill(list2);
+    }
 
     ObservableList<Medicine> list2 = FXCollections.observableArrayList(
 //            new Medicine(1021,"Baibhav", 5, 20, "Mishra", "Tablet", "20/10/2004"),
@@ -169,6 +173,7 @@ public class    DashBoardController implements Initializable {
 
 
     }
+
 
 
 }
