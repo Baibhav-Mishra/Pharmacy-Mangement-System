@@ -85,7 +85,6 @@ public class DashBoardController implements Initializable {
 //
 //    );
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         IDColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, Integer>("_id"));
@@ -96,6 +95,6 @@ public class DashBoardController implements Initializable {
         ManufactureColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("manufacturer"));
         table1.setItems(mongodb.fetchData());
 
-
     }
+
 }

@@ -12,8 +12,11 @@
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pharmacy_mangement_system.LoginController">
-   <right>
-      <AnchorPane prefHeight="353.0" prefWidth="296.0" BorderPane.alignment="CENTER">
+   <left>
+      <AnchorPane prefHeight="400.0" prefWidth="188.0" BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <AnchorPane prefHeight="345.0" prefWidth="328.0" BorderPane.alignment="CENTER">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f0f0f0" height="330.0" layoutX="13.0" layoutY="25.0" stroke="BLACK" strokeType="INSIDE" width="279.0" />
             <Label layoutX="29.0" layoutY="154.0" prefHeight="21.0" prefWidth="87.0" text="User Name:">
@@ -39,8 +42,5 @@
             <Label layoutX="34.0" layoutY="253.0" text="Invalid Credentials" textFill="#e30b0b" />
          </children>
       </AnchorPane>
-   </right>
-   <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </left>
+   </center>
 </BorderPane>
