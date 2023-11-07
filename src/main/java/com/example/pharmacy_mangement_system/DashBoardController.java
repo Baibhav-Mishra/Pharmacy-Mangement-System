@@ -20,6 +20,9 @@ public class    DashBoardController implements Initializable {
     private TableColumn<Medicine, String> ExpiryColumn1;
 
     @FXML
+    private TableColumn<Medicine, String> ExpiryColumn2;
+
+    @FXML
     private TableColumn<Medicine, Integer> IDColumn1;
 
     @FXML
@@ -35,10 +38,16 @@ public class    DashBoardController implements Initializable {
     private TableColumn<Medicine, String> TypeColumn1;
 
     @FXML
+    private TableColumn<Medicine, String> TypeColumn2;
+
+    @FXML
     private TextField searchField;
 
     @FXML
     private TableColumn<Medicine, String> ManufactureColumn1;
+
+    @FXML
+    private TableColumn<Medicine, String> ManufactureColumn2;
 
 
     @FXML
@@ -155,6 +164,10 @@ public class    DashBoardController implements Initializable {
         NameColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
         PriceColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("price"));
         QuantityColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("currentStock"));
+        ManufactureColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, String>("manufacturer"));
+        ExpiryColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, String>("expiry"));
+        TypeColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, String>("type"));
+
         TableColumn<Medicine, Void> indexColumn = new TableColumn<>("Row index");
 
 

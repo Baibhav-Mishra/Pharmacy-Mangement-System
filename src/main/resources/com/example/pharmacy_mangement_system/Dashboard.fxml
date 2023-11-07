@@ -7,11 +7,12 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="490.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pharmacy_mangement_system.DashBoardController">
    <children>
-      <ScrollPane layoutX="16.0" layoutY="78.0" prefHeight="307.0" prefWidth="322.0">
+      <ScrollPane layoutX="23.0" layoutY="91.0" prefHeight="307.0" prefWidth="322.0">
          <content>
             <TableView fx:id="table1" prefHeight="306.0" prefWidth="577.0">
               <columns>
@@ -26,25 +27,36 @@
             </TableView>
          </content>
       </ScrollPane>
-      <TextField fx:id="searchField" layoutX="69.0" layoutY="42.0" onAction="#onEnterSearchField" prefHeight="25.0" prefWidth="299.0" promptText="Enter Medicine" />
-      <Label layoutX="24.0" layoutY="46.0" text="Search" />
-      <Button layoutX="505.0" layoutY="39.0" mnemonicParsing="false" onAction="#undoButtonClick" text="Undo" />
-      <TextField fx:id="QuantityLabel" layoutX="143.0" layoutY="397.0" promptText="Enter Quantity" />
-      <Text layoutX="88.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" />
-      <Button layoutX="119.0" layoutY="432.0" mnemonicParsing="false" onAction="#onAddBillButtonClick" text="Add to Bill" />
-      <Button layoutX="496.0" layoutY="424.0" mnemonicParsing="false" onAction="#onGenerateButtonClick" text="Generate Bill" />
+      <TextField fx:id="searchField" layoutX="73.0" layoutY="55.0" onAction="#onEnterSearchField" prefHeight="26.0" prefWidth="272.0" promptText="Enter Medicine" />
+      <Label layoutX="26.0" layoutY="59.0" text="Search" />
+      <Button layoutX="619.0" layoutY="55.0" mnemonicParsing="false" onAction="#undoButtonClick" text="Remove Item" />
+      <TextField fx:id="QuantityLabel" layoutX="110.0" layoutY="420.0" promptText="Enter Quantity" />
+      <Text layoutX="33.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+      <Button layoutX="274.0" layoutY="420.0" mnemonicParsing="false" onAction="#onAddBillButtonClick" text="Add to Bill" />
+      <Button layoutX="621.0" layoutY="419.0" mnemonicParsing="false" onAction="#onGenerateButtonClick" text="Generate Bill" />
       <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBackButtonPress" text="&lt;- Back" />
-      <ScrollPane layoutX="374.0" layoutY="78.0" prefHeight="307.0">
+      <ScrollPane layoutX="366.0" layoutY="91.0" prefHeight="307.0" prefWidth="338.0">
          <content>
-            <TableView fx:id="billing_table">
+            <TableView fx:id="billing_table" prefHeight="314.0">
               <columns>
                   <TableColumn fx:id="IDColumn2" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="TypeColumn2" prefWidth="75.0" text="Type" />
                 <TableColumn fx:id="NameColumn2" prefWidth="75.0" text="Name" />
                   <TableColumn fx:id="QuantityColumn2" prefWidth="75.0" text="Quantity" />
                   <TableColumn fx:id="PriceColumn2" prefWidth="75.0" text="Price" />
+                  <TableColumn fx:id="ExpiryColumn2" prefWidth="75.0" text="Expiry Date" />
+                  <TableColumn fx:id="ManufactureColumn2" prefWidth="75.0" text="Manufacturer" />
               </columns>
             </TableView>
          </content>
       </ScrollPane>
+      <Label fx:id="total" layoutX="395.0" layoutY="423.0" prefHeight="18.0" prefWidth="105.0" text="Total Price:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

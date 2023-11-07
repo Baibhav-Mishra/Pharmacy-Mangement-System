@@ -22,20 +22,29 @@ public class GenerateBill {
         // Step-2 Creating a Document object
         Document doc = new Document(pdfDoc);
 
-        // Step-3 Creating a table
-        Table table = new Table(4);
 
-        table.addCell("ID");
-        table.addCell("Name of Medicine");
-        table.addCell("Quantity");
-        table.addCell("Price");
+
+        // Step-3 Creating a table
+        Table table = new Table(7);
+
+        table.addCell("  ID  ");
+        table.addCell("  Type  ");
+        table.addCell("  Name of Medicine  ");
+        table.addCell("  Quantity  ");
+        table.addCell("  Price  ");
+        table.addCell("  Expiry Date  ");
+        table.addCell("  Manufacturer  ");
+
 
 
         for(Medicine med: arr){
             table.addCell(""+med.get_id());
+            table.addCell(med.getType());
             table.addCell(med.getName());
             table.addCell(""+med.getCurrentStock());
             table.addCell(""+med.getPrice());
+            table.addCell(med.getExpiry());
+            table.addCell(med.getManufacturer());
         }
 
         doc.add(table);
