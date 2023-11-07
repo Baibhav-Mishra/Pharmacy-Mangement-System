@@ -25,6 +25,12 @@ public class GenerateBill {
         // Step-3 Creating a table
         Table table = new Table(4);
 
+        table.addCell("ID");
+        table.addCell("Name of Medicine");
+        table.addCell("Quantity");
+        table.addCell("Price");
+
+
         for(Medicine med: arr){
             table.addCell(""+med.get_id());
             table.addCell(med.getName());
