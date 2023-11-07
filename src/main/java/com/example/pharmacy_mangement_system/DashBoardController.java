@@ -70,7 +70,7 @@ public class DashBoardController implements Initializable {
     private TableView<Medicine> billing_table;
 
     @FXML
-    Medicine ValueTable2, ValueTable1;
+    Medicine ValueTable2, ValueTable1, ValueTable3;
     @FXML
     void onBackButtonPress(ActionEvent event) throws IOException {
         SceneSwitch.switchToScene(event, "Home");
@@ -96,7 +96,7 @@ public class DashBoardController implements Initializable {
         System.out.println("fuck me");
         ValueTable1.setCurrentStock(ValueTable2.getCurrentStock()+ValueTable1.getCurrentStock());
         table1.refresh();
-        list2.remove(ValueTable2);
+        list2.remove(ValueTable3);
         System.out.println(list2.size());
         billing_table.refresh();
     }
@@ -133,6 +133,8 @@ public class DashBoardController implements Initializable {
         billing_table.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             if (newValue != null) {
                 ValueTable2 = newValue.copy();
+                ValueTable3 = newValue;
+
             }
         });
 
