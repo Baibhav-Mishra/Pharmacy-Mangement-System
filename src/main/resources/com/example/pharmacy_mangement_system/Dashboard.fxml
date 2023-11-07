@@ -2,12 +2,11 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
@@ -30,19 +29,26 @@
       </ScrollPane>
       <TextField fx:id="searchField" layoutX="69.0" layoutY="42.0" onAction="#onEnterSearchField" prefHeight="25.0" prefWidth="299.0" promptText="Enter Medicine" />
       <Label layoutX="24.0" layoutY="46.0" text="Search" />
-      <TreeTableView layoutX="411.2" layoutY="78.0" prefHeight="307.0" prefWidth="358.0" AnchorPane.leftAnchor="411.0">
-        <columns>
-          <TreeTableColumn prefWidth="75.0" text="Name" />
-          <TreeTableColumn prefWidth="75.0" text="Quantity" />
-            <TreeTableColumn prefWidth="75.0" text="Price" />
-            <TreeTableColumn prefWidth="75.0" text="Amount" />
-        </columns>
-      </TreeTableView>
       <Button layoutX="553.0" layoutY="42.0" mnemonicParsing="false" text="Undo" />
       <TextField layoutX="176.0" layoutY="398.0" promptText="Enter Quantity" />
       <Text layoutX="126.0" layoutY="416.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" />
       <Button layoutX="150.0" layoutY="433.0" mnemonicParsing="false" text="Add to Bill" />
       <Button layoutX="545.0" layoutY="408.0" mnemonicParsing="false" text="Generate Bill" />
       <Button layoutX="24.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBackButtonPress" text="&lt;- Back" />
+      <ScrollBar />
+      <ScrollPane layoutX="402.0" layoutY="78.0" prefHeight="307.0" prefWidth="322.0">
+         <content>
+            <TableView prefHeight="310.0" prefWidth="468.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Sr. No." />
+                  <TableColumn prefWidth="75.0" text="ID" />
+                <TableColumn prefWidth="75.0" text="Name" />
+                  <TableColumn prefWidth="75.0" text="Quantity" />
+                  <TableColumn prefWidth="75.0" text="Price" />
+                  <TableColumn prefWidth="75.0" text="Amount" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

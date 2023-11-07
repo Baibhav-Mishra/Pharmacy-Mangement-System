@@ -2,6 +2,7 @@ package com.example.pharmacy_mangement_system;
 
 import static com.mongodb.client.model.Filters.eq;
 
+import com.mongodb.MongoTimeoutException;
 import org.bson.Document;
 
 import com.mongodb.client.MongoClient;
@@ -18,13 +19,17 @@ public class mongodb {
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("sample_mflix");
             MongoCollection<Document> collection = database.getCollection("movies");
-
+//
             Document doc = collection.find(eq("title", "Back to the Future")).first();
             if (doc != null) {
                 System.out.println(doc.toJson());
             } else {
                 System.out.println("No matching documents found.");
             }
+        }
+
+        catch(MongoTimeoutException exc){
+            System.out.println("h");
         }
     }
 }
