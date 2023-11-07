@@ -30,14 +30,14 @@ public class mongodb {
 
             try (MongoCursor<Document> cursor = collection.find().iterator()) {
                 while (cursor.hasNext()) {
-                    System.out.println();
+//                    System.out.println();
                     Medicine m1 = mapper.readValue(cursor.next().toJson(), Medicine.class);
                     list.add(m1);
                 }
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println(list.size());
+//            System.out.println(list.size());
         }
         catch(MongoTimeoutException exc){
             System.out.println("h");

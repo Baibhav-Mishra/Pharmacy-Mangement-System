@@ -81,7 +81,7 @@ public class DashBoardController implements Initializable {
 
     @FXML
     void onEnterSearchField(ActionEvent event) {
-        System.out.println(searchField.getText());
+//        System.out.println(searchField.getText());
     }
     @FXML
     void onAddBillButtonClick(ActionEvent event) {
@@ -91,6 +91,14 @@ public class DashBoardController implements Initializable {
         list2.add(ValueTable2);
         billing_table.setItems(list2);
         table1.refresh();
+    }
+    public void undoButtonClick(ActionEvent actionEvent) {
+        System.out.println("fuck me");
+        ValueTable1.setCurrentStock(ValueTable2.getCurrentStock()+ValueTable1.getCurrentStock());
+        table1.refresh();
+        list2.remove(ValueTable2);
+        System.out.println(list2.size());
+        billing_table.refresh();
     }
 
     ObservableList<Medicine> list2 = FXCollections.observableArrayList(
@@ -119,6 +127,12 @@ public class DashBoardController implements Initializable {
                 ValueTable2 = newValue.copy();
                 ValueTable1 = newValue;
 
+            }
+        });
+
+        billing_table.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (newValue != null) {
+                ValueTable2 = newValue.copy();
             }
         });
 
@@ -153,5 +167,6 @@ public class DashBoardController implements Initializable {
 
 
     }
+
 
 }
