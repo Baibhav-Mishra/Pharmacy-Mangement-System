@@ -51,8 +51,6 @@ public class mongodb {
             MongoCollection<Document> collection = database.getCollection("Medicines");
             Document doc1 = new Document("_id", id).append("type", type).append("name", name).append("price", price).append("expiry", expiry).append("manufacturer", manufacturer).append("currentStock", currentStock);
             InsertOneResult result = collection.insertOne(doc1);
-        } catch (MongoTimeoutException exc) {
-            System.out.println("h");
         }
     }
 }

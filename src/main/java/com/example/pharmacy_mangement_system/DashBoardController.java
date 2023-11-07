@@ -1,5 +1,7 @@
 package com.example.pharmacy_mangement_system;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -7,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
@@ -63,33 +66,61 @@ public class DashBoardController implements Initializable {
     private TableColumn<Medicine, Double> QuantityColumn2;
 
     @FXML
-    private TableColumn<Medicine, Integer> SerialNoColumn2;
+    private TableColumn<Medicine, String> SerialNoColumn2;
 
     @FXML
     private TableView<Medicine> billing_table;
 
-
+    @FXML
+    Medicine Value;
     @FXML
     void onBackButtonPress(ActionEvent event) throws IOException {
         SceneSwitch.switchToScene(event, "Home");
     }
 
     @FXML
+    private TextField QuantityLabel;
+
+    @FXML
     void onEnterSearchField(ActionEvent event) {
         System.out.println(searchField.getText());
     }
+    @FXML
+    void onAddBillButtonClick(ActionEvent event) {
+        Value.setCurrentStock(Integer.parseInt(QuantityLabel.getText()));
+        Value.setPrice(Value.getPrice()*Value.getCurrentStock());
+        list2.add(Value);
+        billing_table.setItems(list2);
+    }
 
-//    ObservableList<Medicine> list = FXCollections.observableArrayList(
-//
-//
+    ObservableList<Medicine> list2 = FXCollections.observableArrayList(
 //            new Medicine(1021,"Baibhav", 5, 20, "Mishra", "Tablet", "20/10/2004"),
 //            new Medicine(1021,"Baibhav", 5, 20, "Mishra", "Tablet", "20/10/2004")
-//
-//
-//    );
+
+
+    );
+
+    public static <T> Callback<TableColumn<T, Void>, TableCell<T, Void>> indexCellFactory() {
+        return t -> new TableCell<T, Void>() {
+
+            @Override
+            public void updateIndex(int i) {
+                super.updateIndex(i);
+                setText(isEmpty() ? "" : Integer.toString(i));
+            }
+
+        };
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        table1.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (newValue != null) {
+                Value = newValue;
+
+            }
+        });
+
         IDColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, Integer>("_id"));
         ExpiryColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("expiry"));
         NameColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
@@ -98,6 +129,28 @@ public class DashBoardController implements Initializable {
         ManufactureColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("manufacturer"));
         QuantityColumn.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("currentStock"));
         table1.setItems(mongodb.fetchData());
+
+        IDColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, Integer>("_id"));
+        NameColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
+        PriceColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("price"));
+        QuantityColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("currentStock"));
+        TableColumn<Medicine, Void> indexColumn = new TableColumn<>("Row index");
+
+
+
+
+//        SerialNoColumn2.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Medicine, String>, ObservableValue<String>>() {
+//            @Override
+//            public ObservableValue<String> call(TableColumn.CellDataFeatures<Medicine, String> medicineStringCellDataFeatures) {
+//                return new ReadOnlyObjectWrapper<>(billing_table.getItems().indexOf(medicineStringCellDataFeatures.getValue()) + "");
+//            }});
+//        Seria.setCellValueFactory(indexCellFactory());
+
+
+
+
+
+
     }
 
 }

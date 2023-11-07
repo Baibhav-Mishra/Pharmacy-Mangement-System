@@ -29,9 +29,9 @@
       <TextField fx:id="searchField" layoutX="69.0" layoutY="42.0" onAction="#onEnterSearchField" prefHeight="25.0" prefWidth="299.0" promptText="Enter Medicine" />
       <Label layoutX="24.0" layoutY="46.0" text="Search" />
       <Button layoutX="505.0" layoutY="39.0" mnemonicParsing="false" text="Undo" />
-      <TextField layoutX="143.0" layoutY="397.0" promptText="Enter Quantity" />
+      <TextField fx:id="QuantityLabel" layoutX="143.0" layoutY="397.0" promptText="Enter Quantity" />
       <Text layoutX="88.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" />
-      <Button layoutX="119.0" layoutY="432.0" mnemonicParsing="false" text="Add to Bill" />
+      <Button layoutX="119.0" layoutY="432.0" mnemonicParsing="false" onAction="#onAddBillButtonClick" text="Add to Bill" />
       <Button layoutX="496.0" layoutY="424.0" mnemonicParsing="false" text="Generate Bill" />
       <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBackButtonPress" text="&lt;- Back" />
       <ScrollPane layoutX="374.0" layoutY="78.0" prefHeight="307.0" prefWidth="334.0">

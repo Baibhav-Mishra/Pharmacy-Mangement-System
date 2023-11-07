@@ -36,6 +36,9 @@ public class AddController implements Initializable {
     private ComboBox<String> addType = new ComboBox<>();
 
     @FXML
+    private Label addedLabel;
+
+    @FXML
     void onBackButtonPress(ActionEvent event) throws IOException {
         SceneSwitch.switchToScene(event, "Home");
     }
@@ -57,7 +60,9 @@ public class AddController implements Initializable {
             alert.setContentText("Please fill all the fields");
             alert.showAndWait();
         } else {
+            addedLabel.setVisible(true);
             mongodb.addtoCollection(Integer.parseInt(id), type, name, Double.parseDouble(price), expiry, manufacturer, Integer.parseInt(quantity));
+
         }
     }
 
