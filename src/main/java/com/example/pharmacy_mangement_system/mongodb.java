@@ -28,7 +28,6 @@ public class mongodb {
 //            InsertOneResult result = collection.insertOne(doc1);
 
 
-            // iterate code goes here
             try (MongoCursor<Document> cursor = collection.find().iterator()) {
                 while (cursor.hasNext()) {
                     System.out.println();
@@ -38,17 +37,22 @@ public class mongodb {
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
-//            if (doc != null) {
-//                System.out.println(doc.toJson());
-//            } else {
-//                System.out.println("No matching documents found.");
-//            }
             System.out.println(list.size());
         }
-//
         catch(MongoTimeoutException exc){
             System.out.println("h");
         }
         return list;
+    }
+    void addtoCollection(int id, String type, String name, int price, String expiry, String manufacturer, int currentStock) {
+        String uri = "mongodb+srv://admin:admin@cluster0.ez7ctd3.mongodb.net/?retryWrites=true&w=majority";
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("PharmacyDB");
+            MongoCollection<Document> collection = database.getCollection("Medicines");
+            Document doc1 = new Document("_id", id).append("type", type).append("name", name).append("price", price).append("expiry", expiry).append("manufacturer", manufacturer).append("currentStock", currentStock);
+            InsertOneResult result = collection.insertOne(doc1);
+        } catch (MongoTimeoutException exc) {
+            System.out.println("h");
+        }
     }
 }
