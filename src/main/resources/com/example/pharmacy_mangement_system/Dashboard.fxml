@@ -15,7 +15,6 @@
          <content>
             <TableView fx:id="table1" prefHeight="306.0" prefWidth="577.0">
               <columns>
-                  <TableColumn fx:id="SerialNoColumn1" prefWidth="75.0" text="Sr. No." />
                   <TableColumn fx:id="IDColumn1" prefWidth="75.0" text="ID" />
                   <TableColumn fx:id="TypeColumn1" prefWidth="79.5" text="Type" />
                 <TableColumn fx:id="NameColumn1" prefWidth="70.5" text="Name" />

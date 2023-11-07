@@ -26,8 +26,8 @@ public class DashBoardController implements Initializable {
     @FXML
     private TableColumn<Medicine, Double> PriceColumn1;
 
-    @FXML
-    private TableColumn<Medicine, Integer> SerialNoColumn1;
+//    @FXML
+//    private TableColumn<Medicine, Integer> SerialNoColumn1;
 
     @FXML
     private TableColumn<Medicine, String> TypeColumn1;
@@ -76,26 +76,25 @@ public class DashBoardController implements Initializable {
         System.out.println(searchField.getText());
     }
 
-    ObservableList<Medicine> list = FXCollections.observableArrayList(
-
-
-            new Medicine(1021,"Baibhav", 5, 20, "Mishra", "Tablet", "20/10/2004"),
-            new Medicine(1021,"Baibhav", 5, 20, "Mishra", "Tablet", "20/10/2004")
-
-
-    );
+//    ObservableList<Medicine> list = FXCollections.observableArrayList(
+//
+//
+//            new Medicine(1021,"Baibhav", 5, 20, "Mishra", "Tablet", "20/10/2004"),
+//            new Medicine(1021,"Baibhav", 5, 20, "Mishra", "Tablet", "20/10/2004")
+//
+//
+//    );
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        IDColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, Integer>("id"));
+        IDColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, Integer>("_id"));
         ExpiryColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("expiry"));
         NameColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
-        PriceColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("cost"));
+        PriceColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("price"));
         TypeColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("type"));
         ManufactureColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("manufacturer"));
-        SerialNoColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, Integer>("serialno"));
-        table1.setItems(list);
+        table1.setItems(mongodb.fetchData());
 
 
     }

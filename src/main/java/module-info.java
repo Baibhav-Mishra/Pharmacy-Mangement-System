@@ -6,8 +6,7 @@ module com.example.pharmacy_mangement_system {
     requires org.mongodb.bson;
     requires java.sql;
     requires mysql.connector.java;
-
-
+    requires com.fasterxml.jackson.databind;
     opens com.example.pharmacy_mangement_system to javafx.fxml;
     exports com.example.pharmacy_mangement_system;
 }

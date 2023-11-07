@@ -4,7 +4,7 @@ package com.example.pharmacy_mangement_system;
 public class Medicine {
     String name = "";
     double cost;
-    int currentStock, id;
+    int currentStock, _id;
     String manufacturer = "", type = "", expiry = "";
 
     public String getName() {
@@ -15,9 +15,9 @@ public class Medicine {
         this.name = name;
     }
 
-    public Medicine(int id, String name, double cost, int currentStock, String manufacturer, String type, String expiry)
+    public Medicine(int _id, String name, double cost, int currentStock, String manufacturer, String type, String expiry)
     {
-        this.id = id;
+        this._id = _id;
         this.name = name;
         this.cost = cost;
         this.currentStock = currentStock;
@@ -25,12 +25,13 @@ public class Medicine {
         this.type = type;
         this.expiry = expiry;
     }
+    public Medicine(){};
 
-    public double getCost() {
+    public double getPrice() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setPrice(double cost) {
         this.cost = cost;
     }
 
@@ -62,12 +63,12 @@ public class Medicine {
         return expiry;
     }
 
-    public int getId() {
-        return id;
+    public int get_id() {
+        return _id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void set_id(int _id) {
+        this._id = _id;
     }
 
     public void setExpiry(String expiry) {
