@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DashBoardController implements Initializable {
+public class    DashBoardController implements Initializable {
 
     @FXML
     private TableColumn<Medicine, String> ExpiryColumn1;
