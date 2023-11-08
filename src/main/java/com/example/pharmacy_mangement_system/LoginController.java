@@ -24,6 +24,8 @@ public class LoginController {
 
     }
     @FXML
-    void onSignUpClicked(){return;}
+    void onSignUpClicked(ActionEvent event) throws IOException {
+        SceneSwitch.switchToScene(event, "Signup");
+    }
 
 }
