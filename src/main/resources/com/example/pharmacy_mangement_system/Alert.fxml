@@ -4,30 +4,32 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pharmacy_mangement_system.AlertController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pharmacy_mangement_system.AlertController">
    <children>
-      <Text layoutX="269.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alerts!" textAlignment="CENTER" wrappingWidth="62.93670654296875">
+      <Text layoutX="315.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ALERTS!" textAlignment="CENTER" wrappingWidth="89.336669921875">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <Text layoutX="48.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Low Stock Medicines" wrappingWidth="226.13677978515625">
+      <Text layoutX="34.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Low Stock Medicines" wrappingWidth="226.13677978515625">
          <font>
             <Font size="17.0" />
          </font></Text>
-      <Text layoutX="333.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Near Expiry date Medicines" wrappingWidth="236.5367431640625">
+      <Text layoutX="366.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Near Expiry date Medicines" wrappingWidth="236.5367431640625">
          <font>
             <Font size="17.0" />
          </font></Text>
-      <ScrollPane layoutX="34.0" layoutY="100.0" prefHeight="262.0" prefWidth="270.0">
+      <ScrollPane layoutX="34.0" layoutY="124.0" prefHeight="318.0" prefWidth="314.0">
          <content>
-            <TableView fx:id="lowStockTable" prefHeight="278.0">
+            <TableView fx:id="lowStockTable" prefHeight="322.0" prefWidth="499.0">
                <columns>
-                  <TableColumn fx:id="alertID" prefWidth="55.19998246431351" text="ID" />
+                  <TableColumn fx:id="alertID" prefWidth="55.19998246431351" text="Batch ID" />
                   <TableColumn fx:id="alertName" prefWidth="92.79998397827148" text="Name" />
                   <TableColumn fx:id="alertStock" prefWidth="88.0" text="Stock" />
                   <TableColumn fx:id="alertType" prefWidth="82.40003967285156" text="Type" />
@@ -38,13 +40,13 @@
          </content>
       </ScrollPane>
       <Button layoutX="20.0" layoutY="16.0" mnemonicParsing="false" onAction="#onBackButtonPress" text="&lt;- Back" />
-      <ScrollPane layoutX="316.0" layoutY="101.0" prefHeight="262.0" prefWidth="270.0">
+      <ScrollPane layoutX="366.0" layoutY="126.0" prefHeight="318.0" prefWidth="322.0">
          <content>
-            <TableView fx:id="nearExpiryTable" prefHeight="278.0">
+            <TableView fx:id="nearExpiryTable" prefHeight="322.0" prefWidth="503.0">
                <columns>
-                  <TableColumn fx:id="alertID1" prefWidth="52.80004960298538" text="ID" />
-                  <TableColumn fx:id="alertName1" prefWidth="103.99999618530273" text="Name" />
-                  <TableColumn fx:id="alertExpiry1" prefWidth="77.5999755859375" text="Expiry Date" />
+                  <TableColumn fx:id="alertID1" prefWidth="52.80004960298538" text="Batch ID" />
+                  <TableColumn fx:id="alertName1" prefWidth="103.20000839233398" text="Name" />
+                  <TableColumn fx:id="alertExpiry1" prefWidth="78.39996337890625" text="Expiry Date" />
                   <TableColumn fx:id="alertType1" prefWidth="111.20002746582031" text="Type" />
                   <TableColumn fx:id="alertStock1" prefWidth="77.5999755859375" text="Stock" />
                   <TableColumn fx:id="alertManufacturer1" prefWidth="77.5999755859375" text="Manufacturer" />
@@ -52,6 +54,11 @@
             </TableView>
          </content>
       </ScrollPane>
+      <ImageView fitHeight="57.0" fitWidth="64.0" layoutX="242.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@alert.png" />
+         </image>
+      </ImageView>
       
    </children>
 </AnchorPane>

@@ -32,11 +32,11 @@ public class GenerateBill {
         // Step-3 Creating a table
         Table table = new Table(7);
 
-        table.addCell("  ID  ");
-        table.addCell("  Type  ");
+        table.addCell("  ID   ");
+        table.addCell("  Type     ");
         table.addCell("  Name of Medicine  ");
         table.addCell("  Quantity  ");
-        table.addCell("  Price  ");
+        table.addCell("  Price   ");
         table.addCell("  Expiry Date  ");
         table.addCell("  Manufacturer  ");
 
@@ -50,21 +50,16 @@ public class GenerateBill {
             table.addCell(med.getManufacturer());
         }
 
-//        table.addCell("");
-//        table.addCell("");
-//        table.addCell("");
-//        table.addCell("");
-//        table.addCell("");
-//        table.addCell("Total: ");
-//        table.addCell(""+total);
-//
+        table.addCell("");
+        table.addCell("");
+        table.addCell("");
+        table.addCell("");
+        table.addCell("");
+        table.addCell("Total: ");
+        table.addCell(""+total);
+
         doc.add(table);
 
-        Table table2 = new Table(2);
-        table2.addCell("Total: ");
-        table2.addCell(""+total);
-
-        doc.add(table2);
         // Step-7 Closing the document
         doc.close();
 

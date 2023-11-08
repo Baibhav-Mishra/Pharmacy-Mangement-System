@@ -10,13 +10,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="490.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pharmacy_mangement_system.DashBoardController">
+<AnchorPane prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pharmacy_mangement_system.DashBoardController">
    <children>
       <ScrollPane layoutX="23.0" layoutY="91.0" prefHeight="307.0" prefWidth="322.0">
          <content>
             <TableView fx:id="table1" prefHeight="306.0" prefWidth="577.0">
               <columns>
-                  <TableColumn fx:id="IDColumn1" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="IDColumn1" prefWidth="75.0" text="Batch ID" />
                   <TableColumn fx:id="TypeColumn1" prefWidth="79.5" text="Type" />
                 <TableColumn fx:id="NameColumn1" prefWidth="70.5" text="Name" />
                   <TableColumn fx:id="PriceColumn1" prefWidth="67.0" text="Price" />
@@ -42,7 +42,7 @@
          <content>
             <TableView fx:id="billing_table" prefHeight="314.0">
               <columns>
-                  <TableColumn fx:id="IDColumn2" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="IDColumn2" prefWidth="75.0" text="Batch ID" />
                   <TableColumn fx:id="TypeColumn2" prefWidth="75.0" text="Type" />
                 <TableColumn fx:id="NameColumn2" prefWidth="75.0" text="Name" />
                   <TableColumn fx:id="QuantityColumn2" prefWidth="75.0" text="Quantity" />
@@ -58,5 +58,10 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Text layoutX="234.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVENTORY AND BILLING">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
