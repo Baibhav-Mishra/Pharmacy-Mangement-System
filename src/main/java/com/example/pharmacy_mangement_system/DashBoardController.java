@@ -150,6 +150,7 @@ public class    DashBoardController implements Initializable {
         GenerateBill.generateBill(list2,total);
         mongodb.updateCollection(list1);
 
+
     }
 
     ObservableList<Medicine> list2 = FXCollections.observableArrayList(
