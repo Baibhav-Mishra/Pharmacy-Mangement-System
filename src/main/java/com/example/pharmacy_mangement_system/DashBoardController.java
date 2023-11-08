@@ -1,5 +1,6 @@
 package com.example.pharmacy_mangement_system;
 
+import com.itextpdf.kernel.colors.Lab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -7,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 import java.io.FileNotFoundException;
@@ -16,6 +18,7 @@ import java.util.ResourceBundle;
 
 public class    DashBoardController implements Initializable {
 
+    public Label totalLabel;
     @FXML
     private TableColumn<Medicine, String> ExpiryColumn1;
 
@@ -80,7 +83,7 @@ public class    DashBoardController implements Initializable {
     private TableView<Medicine> billing_table;
 
     @FXML
-    Medicine ValueTable2, ValueTable1, ValueTable3;
+    Medicine valueTable2, referenceTable1, referenceTable2;
     @FXML
     void onBackButtonPress(ActionEvent event) throws IOException {
         SceneSwitch.switchToScene(event, "Home");
@@ -94,24 +97,31 @@ public class    DashBoardController implements Initializable {
 //        System.out.println(searchField.getText());
     }
     @FXML
+    double total=0;
+    @FXML
     void onAddBillButtonClick(ActionEvent event) {
-        ValueTable2.setCurrentStock(Integer.parseInt(QuantityLabel.getText()));
-        ValueTable2.setPrice(ValueTable1.getPrice() * ValueTable2.getCurrentStock());
-        ValueTable1.setCurrentStock(ValueTable1.currentStock-Integer.parseInt(QuantityLabel.getText()));
-        list2.add(ValueTable2);
+        valueTable2.setCurrentStock(Integer.parseInt(QuantityLabel.getText()));
+//        valueTable2.setPrice(referenceTable1.getPrice() * valueTable2.getCurrentStock());
+        total += referenceTable1.getPrice() * valueTable2.getCurrentStock();
+        referenceTable1.setCurrentStock(referenceTable1.currentStock-Integer.parseInt(QuantityLabel.getText()));
+        list2.add(valueTable2);
         billing_table.setItems(list2);
         table1.refresh();
+        totalLabel.setText("Total: "+total);
     }
     public void undoButtonClick(ActionEvent actionEvent) {
         System.out.println("fuck me");
-        ValueTable1.setCurrentStock(ValueTable2.getCurrentStock()+ValueTable1.getCurrentStock());
+        referenceTable1.setCurrentStock(valueTable2.getCurrentStock()+ referenceTable1.getCurrentStock());
+        total -= valueTable2.getCurrentStock()*valueTable2.getPrice();
+        list2.remove(referenceTable2);
+
         table1.refresh();
-        list2.remove(ValueTable3);
-        System.out.println(list2.size());
         billing_table.refresh();
     }
     public void onGenerateButtonClick(ActionEvent actionEvent) throws FileNotFoundException {
         GenerateBill.generateBill(list2);
+        mongodb.updateCollection(list1);
+
     }
 
     ObservableList<Medicine> list2 = FXCollections.observableArrayList(
@@ -120,6 +130,8 @@ public class    DashBoardController implements Initializable {
 
 
     );
+    ObservableList<Medicine> list1 = FXCollections.observableArrayList();
+
 
     public static <T> Callback<TableColumn<T, Void>, TableCell<T, Void>> indexCellFactory() {
         return t -> new TableCell<T, Void>() {
@@ -135,18 +147,21 @@ public class    DashBoardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        table1.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+
+        list1 = mongodb.fetchData();
+
+                table1.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             if (newValue != null) {
-                ValueTable2 = newValue.copy();
-                ValueTable1 = newValue;
+                valueTable2 = newValue.copy();
+                referenceTable1 = newValue;
 
             }
         });
 
         billing_table.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             if (newValue != null) {
-                ValueTable2 = newValue.copy();
-                ValueTable3 = newValue;
+                valueTable2 = newValue.copy();
+                referenceTable2 = newValue;
 
             }
         });
@@ -158,7 +173,8 @@ public class    DashBoardController implements Initializable {
         TypeColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("type"));
         ManufactureColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("manufacturer"));
         QuantityColumn.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("currentStock"));
-        table1.setItems(mongodb.fetchData());
+
+        table1.setItems(list1);
 
         IDColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, Integer>("_id"));
         NameColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));

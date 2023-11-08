@@ -7,7 +7,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.MongoTimeoutException;
 import com.mongodb.client.*;
+import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.InsertOneOptions;
+import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.InsertOneResult;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -51,6 +53,25 @@ public class mongodb {
             MongoCollection<Document> collection = database.getCollection("Medicines");
             Document doc1 = new Document("_id", id).append("type", type).append("name", name).append("price", price).append("expiry", expiry).append("manufacturer", manufacturer).append("currentStock", currentStock);
             InsertOneResult result = collection.insertOne(doc1);
+        }
+        catch(MongoTimeoutException exc){
+            System.out.println("Timeout");
+        }
+
+    }
+    public static void updateCollection(ObservableList<Medicine> list)
+    {
+        String uri = "mongodb+srv://admin:admin@cluster0.ez7ctd3.mongodb.net/?retryWrites=true&w=majority";
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("PharmacyDB");
+            MongoCollection<Document> collection = database.getCollection("Medicines");
+            for(Medicine m: list)
+            {
+                collection.updateOne(Filters.eq("_id", m._id), Updates.set("currentStock", m.getCurrentStock()));
+            }
+        }
+        catch(MongoTimeoutException exc){
+            System.out.println("Timeout");
         }
     }
 }
