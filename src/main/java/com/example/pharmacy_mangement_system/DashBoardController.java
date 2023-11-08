@@ -8,8 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Text;
-import javafx.util.Callback;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -149,17 +147,17 @@ public class    DashBoardController implements Initializable {
     ObservableList<Medicine> list1 = FXCollections.observableArrayList();
 
 
-    public static <T> Callback<TableColumn<T, Void>, TableCell<T, Void>> indexCellFactory() {
-        return t -> new TableCell<T, Void>() {
-
-            @Override
-            public void updateIndex(int i) {
-                super.updateIndex(i);
-                setText(isEmpty() ? "" : Integer.toString(i));
-            }
-
-        };
-    }
+//    public static <T> Callback<TableColumn<T, Void>, TableCell<T, Void>> indexCellFactory() {
+//        return t -> new TableCell<T, Void>() {
+//
+//            @Override
+//            public void updateIndex(int i) {
+//                super.updateIndex(i);
+//                setText(isEmpty() ? "" : Integer.toString(i));
+//            }
+//
+//        };
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -182,25 +180,23 @@ public class    DashBoardController implements Initializable {
             }
         });
 
-        IDColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, Integer>("_id"));
-        ExpiryColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("expiry"));
-        NameColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
-        PriceColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("price"));
-        TypeColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("type"));
-        ManufactureColumn1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("manufacturer"));
-        QuantityColumn.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("currentStock"));
+        IDColumn1.setCellValueFactory(new PropertyValueFactory<>("_id"));
+        ExpiryColumn1.setCellValueFactory(new PropertyValueFactory<>("expiry"));
+        NameColumn1.setCellValueFactory(new PropertyValueFactory<>("name"));
+        PriceColumn1.setCellValueFactory(new PropertyValueFactory<>("price"));
+        TypeColumn1.setCellValueFactory(new PropertyValueFactory<>("type"));
+        ManufactureColumn1.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+        QuantityColumn.setCellValueFactory(new PropertyValueFactory<>("currentStock"));
 
         table1.setItems(list1);
 
-        IDColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, Integer>("_id"));
-        NameColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
-        PriceColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("price"));
-        QuantityColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("currentStock"));
-        ManufactureColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, String>("manufacturer"));
-        ExpiryColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, String>("expiry"));
-        TypeColumn2.setCellValueFactory(new PropertyValueFactory<Medicine, String>("type"));
-
-        TableColumn<Medicine, Void> indexColumn = new TableColumn<>("Row index");
+        IDColumn2.setCellValueFactory(new PropertyValueFactory<>("_id"));
+        NameColumn2.setCellValueFactory(new PropertyValueFactory<>("name"));
+        PriceColumn2.setCellValueFactory(new PropertyValueFactory<>("price"));
+        QuantityColumn2.setCellValueFactory(new PropertyValueFactory<>("currentStock"));
+        ManufactureColumn2.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+        ExpiryColumn2.setCellValueFactory(new PropertyValueFactory<>("expiry"));
+        TypeColumn2.setCellValueFactory(new PropertyValueFactory<>("type"));
 
 
 
