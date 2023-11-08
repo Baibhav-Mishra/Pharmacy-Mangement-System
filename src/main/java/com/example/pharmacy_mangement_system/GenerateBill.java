@@ -1,8 +1,9 @@
 package com.example.pharmacy_mangement_system;
 
-
+import java.util.Random;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Table;
 
@@ -12,9 +13,12 @@ import javafx.collections.ObservableList;
 
 import java.io.FileNotFoundException;
 
+
 public class GenerateBill {
     public static void generateBill(ObservableList<Medicine> arr, double total) throws FileNotFoundException {
-        String file = "src/main/resources/docs/bill.pdf";
+        Random rand = new Random();
+
+        String file = "src/main/resources/docs/bill"+rand.nextInt(1000)+".pdf";
 
         // Step-1 Creating a PdfDocument object
         PdfDocument pdfDoc = new PdfDocument(new PdfWriter(file));
@@ -45,16 +49,21 @@ public class GenerateBill {
             table.addCell(med.getManufacturer());
         }
 
-        table.addCell("");
-        table.addCell("");
-        table.addCell("");
-        table.addCell("");
-        table.addCell("");
-        table.addCell("Total: ");
-        table.addCell(""+total);
-
+//        table.addCell("");
+//        table.addCell("");
+//        table.addCell("");
+//        table.addCell("");
+//        table.addCell("");
+//        table.addCell("Total: ");
+//        table.addCell(""+total);
+//
         doc.add(table);
 
+        Table table2 = new Table(2);
+        table2.addCell("Total: ");
+        table2.addCell(""+total);
+
+        doc.add(table2);
         // Step-7 Closing the document
         doc.close();
     }
