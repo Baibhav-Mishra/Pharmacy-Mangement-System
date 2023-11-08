@@ -45,6 +45,14 @@ public class GenerateBill {
             table.addCell(med.getManufacturer());
         }
 
+        table.addCell("");
+        table.addCell("");
+        table.addCell("");
+        table.addCell("");
+        table.addCell("");
+        table.addCell("Total: ");
+        table.addCell(""+total);
+
         doc.add(table);
 
         // Step-7 Closing the document
