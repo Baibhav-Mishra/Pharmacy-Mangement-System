@@ -22,7 +22,7 @@
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="445.0" layoutY="286.0" mnemonicParsing="false" onAction="#onBackButtonPress" prefHeight="70.0" prefWidth="160.0" text="Back to Login page">
+      <Button layoutX="445.0" layoutY="286.0" mnemonicParsing="false" onAction="#onBackButtonPress" prefHeight="70.0" prefWidth="160.0" text="Logout">
          <font>
             <Font size="14.0" />
          </font></Button>
