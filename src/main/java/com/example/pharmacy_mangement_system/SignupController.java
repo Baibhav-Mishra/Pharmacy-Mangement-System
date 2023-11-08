@@ -20,6 +20,14 @@ public class SignupController implements Initializable {
     @FXML
     private TextField newUsername;
 
+    private void errorDialog(String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
     @FXML
     void onCreateButtonPress(ActionEvent event) throws IOException {
         String username = newUsername.getText();
@@ -31,19 +39,11 @@ public class SignupController implements Initializable {
             }
             else
             {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Username already exists");
-                alert.setContentText("Please enter a new username");
-                alert.showAndWait();
+                errorDialog("Username already exists", "Please enter a new username");
             }
 
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Invalid Password");
-            alert.setContentText("Please enter a valid password");
-            alert.showAndWait();
+            errorDialog("Invalid Password", "Please enter a valid password");
         }
 
     }
@@ -51,12 +51,9 @@ public class SignupController implements Initializable {
     @FXML
     void onLoginClicked(ActionEvent event) throws IOException {
         SceneSwitch.switchToScene(event, "Login");
-
-
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
     }
 }
