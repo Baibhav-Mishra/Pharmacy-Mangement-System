@@ -11,6 +11,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AlertController implements Initializable {
@@ -57,7 +61,7 @@ public class AlertController implements Initializable {
     private TableColumn<Medicine, String> alertType1;
 
     @FXML
-    private TableView<?> nearExpiryTable;
+    private TableView<Medicine> nearExpiryTable;
 
     @FXML
     void onBackButtonPress(ActionEvent event) throws IOException {
@@ -74,20 +78,29 @@ public class AlertController implements Initializable {
         return list;
     }
 
-//    void loadCellValueFactory(TableView<Medicine> table) {
-//       for (TableColumn<Medicine, ?> x: table.getColumns()) {
-//           // TODO
-//           System.out.println(x.getId());
-//       }
-//    }
-
+    public static Calendar toCalendar(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal;
+    }
     ObservableList<Medicine> nearExpiryObservableList() {
         ObservableList<Medicine> list = FXCollections.observableArrayList();
+        Calendar expiry = toCalendar(Calendar.getInstance().getTime());
+        expiry.add(Calendar.MONTH, 1);
         for (Medicine med: mongodb.fetchData()) {
-//            if (med.getExpiry()) {
+            String dateString = med.getExpiry();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = null; Calendar cal = null;
+            try {
+                date = format.parse(dateString);
+                cal = toCalendar(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            assert cal != null;
+            if (cal.before(expiry)) {
                 list.add(med);
-                System.out.println(med.getExpiry());
-//            }
+            }
         }
         return list;
     }
@@ -100,7 +113,6 @@ public class AlertController implements Initializable {
         alertName.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
         alertManufacturer.setCellValueFactory(new PropertyValueFactory<Medicine, String>("manufacturer"));
         alertStock.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("currentStock"));
-//        loadCellValueFactory(lowStockTable);
         lowStockTable.setItems(lowStockObservableList());
 
         alertID1.setCellValueFactory(new PropertyValueFactory<Medicine, Integer>("_id"));
@@ -109,8 +121,7 @@ public class AlertController implements Initializable {
         alertName1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
         alertManufacturer1.setCellValueFactory(new PropertyValueFactory<Medicine, String>("manufacturer"));
         alertStock1.setCellValueFactory(new PropertyValueFactory<Medicine, Double>("currentStock"));
-        nearExpiryObservableList();
-//        loadCellValueFactory(lowStockTable);
-//        nearExpiryTable.setItems(nearExpiryObservableList());
+//        nearExpiryObservableList();
+        nearExpiryTable.setItems(nearExpiryObservableList());
     }
 }
