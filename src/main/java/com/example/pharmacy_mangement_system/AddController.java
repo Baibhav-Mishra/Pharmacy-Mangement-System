@@ -69,7 +69,7 @@ public class AddController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addType.getItems().removeAll(addType.getItems());
-        addType.getItems().addAll("Option A", "Option B", "Option C");
-        addType.getSelectionModel().select("Option B");
+        addType.getItems().addAll("Tablet", "Cream", "Ointment", "Gel", "Syrup", "Injection", "Drops");
+        addType.getSelectionModel().select("Tablet");
     }
 }
