@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class    DashBoardController implements Initializable {
@@ -92,6 +93,18 @@ public class    DashBoardController implements Initializable {
 
     @FXML
     void onEnterSearchField(ActionEvent event) {
+        int row_count = 0;
+
+        for(Medicine i: list1)
+        {
+            if(Objects.equals(searchField.getText(), i.getName()) || Objects.equals(searchField.getText(), String.valueOf(i.get_id())))
+            {
+                table1.getSelectionModel().select(row_count);
+                break;
+            }
+            row_count++;
+        }
+
 //        System.out.println(searchField.getText());
     }
     @FXML
@@ -163,8 +176,7 @@ public class    DashBoardController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         list1 = mongodb.fetchData();
-
-                table1.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+        table1.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             if (newValue != null) {
                 valueTable2 = newValue.copy();
                 referenceTable1 = newValue;
@@ -197,6 +209,9 @@ public class    DashBoardController implements Initializable {
         ManufactureColumn2.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
         ExpiryColumn2.setCellValueFactory(new PropertyValueFactory<>("expiry"));
         TypeColumn2.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+
+
 
 
 
