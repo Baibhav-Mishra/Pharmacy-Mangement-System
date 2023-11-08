@@ -66,8 +66,8 @@ public class    DashBoardController implements Initializable {
     @FXML
     private TableColumn<Medicine, Double> PriceColumn2;
 
-    @FXML
-    private TableColumn<Medicine, Double> AmountColumn2;
+//    @FXML
+//    private TableColumn<Medicine, Double> AmountColumn2;
 
     @FXML
     private TableColumn<Medicine, Double> QuantityColumn;
@@ -75,8 +75,8 @@ public class    DashBoardController implements Initializable {
     @FXML
     private TableColumn<Medicine, Double> QuantityColumn2;
 
-    @FXML
-    private TableColumn<Medicine, String> SerialNoColumn2;
+//    @FXML
+//    private TableColumn<Medicine, String> SerialNoColumn2;
 
     @FXML
     private TableView<Medicine> billing_table;
