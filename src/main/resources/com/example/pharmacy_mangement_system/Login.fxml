@@ -39,7 +39,7 @@
             </Label>
             <Text layoutX="34.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Not a member?" />
             <Hyperlink layoutX="114.0" layoutY="316.0" onAction="#onSignUpClicked" text="Signup" />
-            <Label layoutX="34.0" layoutY="253.0" text="Invalid Credentials" textFill="#e30b0b" />
+            <Label fx:id="invalidLabel" layoutX="34.0" layoutY="253.0" text="Invalid Credentials" textFill="#e30b0b" visible="false" />
          </children>
       </AnchorPane>
    </center>

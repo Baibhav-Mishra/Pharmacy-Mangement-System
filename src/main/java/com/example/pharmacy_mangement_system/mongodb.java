@@ -1,19 +1,19 @@
 package com.example.pharmacy_mangement_system;
 
-import static com.mongodb.client.model.Filters.eq;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.MongoTimeoutException;
 import com.mongodb.client.*;
 import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.InsertOneOptions;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.InsertOneResult;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.bson.Document;
+import org.bson.conversions.Bson;
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.eq;
+
 public class mongodb {
 
     public static ObservableList<Medicine> fetchData() {
@@ -24,7 +24,7 @@ public class mongodb {
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PharmacyDB");
             MongoCollection<Document> collection = database.getCollection("Medicines");
-//
+
 //            Document doc = collection.find(eq("title", "Back to the Future")).first();
 //            Document doc1 = new Document("_id", 2).append("type", "Tablet").append("name", "Crocin").append("price", 10).append("expiry", "20/10/2004").append("manufacturer","GSV").append("currentStock", 60);
 //            InsertOneResult result = collection.insertOne(doc1);
@@ -32,14 +32,13 @@ public class mongodb {
 
             try (MongoCursor<Document> cursor = collection.find().iterator()) {
                 while (cursor.hasNext()) {
-//                    System.out.println();
+                    mapper.reader();
                     Medicine m1 = mapper.readValue(cursor.next().toJson(), Medicine.class);
                     list.add(m1);
                 }
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
-//            System.out.println(list.size());
         }
         catch(MongoTimeoutException exc){
             System.out.println("h");
@@ -74,4 +73,42 @@ public class mongodb {
             System.out.println("Timeout");
         }
     }
+
+    public static boolean verifyCred(String username, String password) {
+        String uri = "mongodb+srv://admin:admin@cluster0.ez7ctd3.mongodb.net/?retryWrites=true&w=majority";
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("PharmacyDB");
+            MongoCollection<Document> collection = database.getCollection("Users");
+
+            try (MongoCursor<Document> cursor = collection.find(and(eq("username", username), eq("password", password))).iterator()) {
+                if (cursor.hasNext()) {return true;}
+            }
+            catch (MongoTimeoutException exc) {System.out.println("Exception");}
+        }
+        return false;
+    }
+    public static boolean addCred(String username, String password)
+    {
+        String uri = "mongodb+srv://admin:admin@cluster0.ez7ctd3.mongodb.net/?retryWrites=true&w=majority";
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("PharmacyDB");
+            MongoCollection<Document> collection = database.getCollection("Users");
+            Bson filter = eq("username", username);
+            // iterate code goes here
+            try (MongoCursor<Document> cursor = collection.find(filter).iterator()) {
+                if (!cursor.hasNext()) {
+                    Document doc1 = new Document("username", username).append("password", password);
+                    collection.insertOne(doc1);
+                    return true;
+                }
+            }
+        }
+        catch(MongoTimeoutException exc){
+            System.out.println("Timeout");
+        }
+        return false;
+
+    }
+
+
 }

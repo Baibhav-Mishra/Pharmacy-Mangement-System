@@ -21,10 +21,22 @@ public class SignupController implements Initializable {
     private TextField newUsername;
 
     @FXML
-    void onCreateButtonPress(ActionEvent event) {
+    void onCreateButtonPress(ActionEvent event) throws IOException {
         String username = newUsername.getText();
         String password = newPassword.getText();
         if (PasswordValidator.isPasswordValid(password)) {
+            if(mongodb.addCred(newUsername.getText(), newPassword.getText()))
+            {
+                SceneSwitch.switchToScene(event, "Login");
+            }
+            else
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Username already exists");
+                alert.setContentText("Please enter a new username");
+                alert.showAndWait();
+            }
 
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -39,6 +51,8 @@ public class SignupController implements Initializable {
     @FXML
     void onLoginClicked(ActionEvent event) throws IOException {
         SceneSwitch.switchToScene(event, "Login");
+
+
     }
 
     @Override
