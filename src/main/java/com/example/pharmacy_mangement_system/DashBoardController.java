@@ -102,6 +102,7 @@ public class    DashBoardController implements Initializable {
                 table1.getSelectionModel().select(row_count);
                 break;
             }
+
             row_count++;
         }
 
