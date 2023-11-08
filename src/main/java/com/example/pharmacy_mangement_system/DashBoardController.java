@@ -97,17 +97,32 @@ public class    DashBoardController implements Initializable {
 //        System.out.println(searchField.getText());
     }
     @FXML
+    Alert a = new Alert(Alert.AlertType.NONE);
+
+
     double total=0;
     @FXML
     void onAddBillButtonClick(ActionEvent event) {
-        valueTable2.setCurrentStock(Integer.parseInt(QuantityLabel.getText()));
+        int quantity = Integer.parseInt(QuantityLabel.getText());
+        //To check if quantity is less than the available stock
+        if(quantity > referenceTable1.getCurrentStock())
+        {
+            a.setAlertType(Alert.AlertType.ERROR);
+            a.setContentText("Quantity should be less than total stock");
+            a.show();
+            return;
+
+        }
+        // show the dialog
+
+        valueTable2.setCurrentStock(quantity);
 //        valueTable2.setPrice(referenceTable1.getPrice() * valueTable2.getCurrentStock());
         total += referenceTable1.getPrice() * valueTable2.getCurrentStock();
-        referenceTable1.setCurrentStock(referenceTable1.currentStock-Integer.parseInt(QuantityLabel.getText()));
+        referenceTable1.setCurrentStock(referenceTable1.currentStock-quantity);
         list2.add(valueTable2);
         billing_table.setItems(list2);
         table1.refresh();
-        totalLabel.setText("Total: "+total);
+        totalLabel.setText("Total: ₹"+total);
     }
     public void undoButtonClick(ActionEvent actionEvent) {
         System.out.println("fuck me");
@@ -119,7 +134,8 @@ public class    DashBoardController implements Initializable {
         billing_table.refresh();
     }
     public void onGenerateButtonClick(ActionEvent actionEvent) throws FileNotFoundException {
-        GenerateBill.generateBill(list2);
+        if(total == 0) return;
+        GenerateBill.generateBill(list2,total);
         mongodb.updateCollection(list1);
 
     }

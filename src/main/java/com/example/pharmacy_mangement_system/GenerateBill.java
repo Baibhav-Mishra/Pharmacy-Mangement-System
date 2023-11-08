@@ -13,8 +13,8 @@ import javafx.collections.ObservableList;
 import java.io.FileNotFoundException;
 
 public class GenerateBill {
-    public static void generateBill(ObservableList<Medicine> arr) throws FileNotFoundException {
-        String file = "src/main/resources/docs/hi.pdf";
+    public static void generateBill(ObservableList<Medicine> arr, double total) throws FileNotFoundException {
+        String file = "src/main/resources/docs/bill.pdf";
 
         // Step-1 Creating a PdfDocument object
         PdfDocument pdfDoc = new PdfDocument(new PdfWriter(file));
@@ -34,8 +34,6 @@ public class GenerateBill {
         table.addCell("  Price  ");
         table.addCell("  Expiry Date  ");
         table.addCell("  Manufacturer  ");
-
-
 
         for(Medicine med: arr){
             table.addCell(""+med.get_id());
