@@ -51,7 +51,7 @@
             <Font size="14.0" />
          </font></Label>
       <TextField fx:id="addQuantity" layoutX="132.0" layoutY="353.0" />
-      <Label fx:id="addedLabel" layoutX="219.0" layoutY="335.0" text="Added Successfully" textFill="#40a645" visible="false" />
+      <Label fx:id="addedLabel" layoutX="206.0" layoutY="412.0" text="Added Successfully" textFill="#40a645" visible="false" />
       <Text layoutX="232.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD ITEM TO INVENTORY">
          <font>
             <Font size="22.0" />
